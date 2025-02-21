@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger House - Cart</title>
+
+    <link rel="stylesheet" href="style.css">
+    
+        <!-- favicon -->
+    <link rel="icon" href="./logo.jpg" type="image/jpg ">
+
+
+    <style>
+
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="header" id="header">
+            <div class="logo">
+                <img src="./logo.jpg" alt="Burger House Logo">
+                <h1>Burger House</h1>
+            </div>
+        <nav>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                 <li><a href="index.html#menu">Menu</a></li>
+                 <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html#specials">Specials</a></li>
+               
+                
+                <li><a href="#">Cart</a></li>
+            </ul>
+        </nav>
+    </div>
+
+ <div class="cart-container">
+    <h1>Cart</h1>
+    <div class="cart-items">
+        <div class="cart-item">
+            <img src="./1.jpg" alt="Burger 1">
+            <div class="cart-item-details">
+                <h2>Burger 1</h2>
+                <p>Price: $5.99</p>
+                <div class="quantity-control">
+                    <button class="decrement-button">-</button>
+                    <span class="quantity">1</span>
+                    <button class="increment-button">+</button>
+                </div>
+                <button class="remove-button">Remove</button>
+            </div>
+        </div>
+        <div class="cart-item">
+            <img src="./1.jpg" alt="Burger 2">
+            <div class="cart-item-details">
+                <h2>Burger 2</h2>
+                <p>Price: $6.99</p>
+                <div class="quantity-control">
+                    <button class="decrement-button">-</button>
+                    <span class="quantity">1</span>
+                    <button class="increment-button">+</button>
+                </div>
+                <button class="remove-button">Remove</button>
+            </div>
+        </div>
+        <div class="cart-item">
+            <img src="./1.jpg" alt="Burger 3">
+            <div class="cart-item-details">
+                <h2>Burger 3</h2>
+                <p>Price: $7.99</p>
+                <div class="quantity-control">
+                    <button class="decrement-button">-</button>
+                    <span class="quantity">1</span>
+                    <button class="increment-button">+</button>
+                </div>
+                <button class="remove-button">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-total">
+        <h2>Total: $20.97</h2>
+        <button class="checkout-button">Checkout</button>
+    </div>
+</div>
+
+
+<footer>
+        &copy; 2023 Burger House. All rights reserved. | 
+        <a href="#privacy">Privacy Policy</a> | 
+        <a href="#terms">Terms of Service</a>
+</footer>
+    
+
+<script>
+   document.addEventListener("DOMContentLoaded", () => {
+    function updateCartDisplay() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartContainer = document.querySelector(".cart-items");
+        const totalContainer = document.querySelector(".cart-total h2");
+        
+        if (cartContainer) {
+            if (cart.length === 0) {
+                cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+                totalContainer.textContent = "Total: $0.00";
+            } else {
+                cartContainer.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <h2>${item.name}</h2>
+                            <p>Price:${ parseFloat(menuItem.querySelector(".price").innerText.replace("$", "")).toFixed(2)}</p>
+                            <div class="quantity-control">
+                                <button class="decrement-button" data-index="${index}">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="increment-button" data-index="${index}">+</button>
+                            </div>
+                            <button class="remove-button" data-index="${index}">Remove</button>
+                        </div>
+                    </div>
+                `).join("");
+                updateTotal();
+            }
+            
+            document.querySelectorAll(".remove-button").forEach(button => {
+                button.addEventListener("click", (event) => {
+                    const index = event.target.getAttribute("data-index");
+                    cart.splice(index, 1);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    updateCartDisplay();
+                });
+            });
+            
+            document.querySelectorAll(".increment-button").forEach(button => {
+                button.addEventListener("click", (event) => {
+                    const index = event.target.getAttribute("data-index");
+                    cart[index].quantity++;
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    updateCartDisplay();
+                });
+            });
+            
+            document.querySelectorAll(".decrement-button").forEach(button => {
+                button.addEventListener("click", (event) => {
+                    const index = event.target.getAttribute("data-index");
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity--;
+                    } else {
+                        cart.splice(index, 1);
+                    }
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    updateCartDisplay();
+                });
+            });
+        }
+    }
+
+    function updateTotal() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let total = cart.reduce((acc, item) => acc + (parseFloat(item.price) * item.quantity), 0);
+    document.querySelector(".cart-total h2").textContent = `Total: $${total.toFixed(2)}`;
+}
+
+    
+    document.querySelectorAll(".addcart").forEach(button => {
+        button.addEventListener("click", (event) => {
+            const menuItem = event.target.closest(".menu-item");
+            const itemName = menuItem.querySelector("h4").innerText;
+            const itemPrice = menuItem.querySelector(".price").innerText.replace("$", "");
+            const itemImage = menuItem.querySelector("img").src;
+            
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const existingItem = cart.find(item => item.name === itemName);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name: itemName, price: itemPrice, image: itemImage, quantity: 1 });
+            }
+            
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${itemName} added to cart!`);
+            setTimeout(() => {
+                window.location.href = "cart.html";
+            }, 500);
+        });
+    });
+    
+    document.querySelector(".checkout-button").addEventListener("click", () => {
+        alert("Proceeding to checkout!");
+        localStorage.removeItem("cart");
+        window.location.href = "checkout.html";
+    });
+    
+    if (document.querySelector(".cart-items")) {
+        updateCartDisplay();
+    }
+});
+
+
+</script>
+
+</body>
+</html>
