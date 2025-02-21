@@ -98,7 +98,21 @@
     
 
 <script>
-   document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
+    function addDefaultItemsIfEmpty() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        if (cart.length === 0) {
+            // Add default items if the cart is empty
+            const defaultItems = [
+                { name: "Burger 1", price: "5.99", image: "./1.jpg", quantity: 1 },
+                { name: "Burger 2", price: "6.99", image: "./1.jpg", quantity: 1 },
+                { name: "Burger 3", price: "7.99", image: "./1.jpg", quantity: 1 }
+            ];
+            localStorage.setItem("cart", JSON.stringify(defaultItems));
+        }
+    }
+
     function updateCartDisplay() {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         const cartContainer = document.querySelector(".cart-items");
@@ -114,7 +128,7 @@
                         <img src="${item.image}" alt="${item.name}">
                         <div class="cart-item-details">
                             <h2>${item.name}</h2>
-                            <p>Price:${ parseFloat(menuItem.querySelector(".price").innerText.replace("$", "")).toFixed(2)}</p>
+                            <p>Price: $${parseFloat(item.price).toFixed(2)}</p>
                             <div class="quantity-control">
                                 <button class="decrement-button" data-index="${index}">-</button>
                                 <span class="quantity">${item.quantity}</span>
@@ -161,47 +175,16 @@
     }
 
     function updateTotal() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let total = cart.reduce((acc, item) => acc + (parseFloat(item.price) * item.quantity), 0);
-    document.querySelector(".cart-total h2").textContent = `Total: $${total.toFixed(2)}`;
-}
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let total = cart.reduce((acc, item) => acc + (parseFloat(item.price) * item.quantity), 0);
+        document.querySelector(".cart-total h2").textContent = `Total: $${total.toFixed(2)}`;
+    }
 
-    
-    document.querySelectorAll(".addcart").forEach(button => {
-        button.addEventListener("click", (event) => {
-            const menuItem = event.target.closest(".menu-item");
-            const itemName = menuItem.querySelector("h4").innerText;
-            const itemPrice = menuItem.querySelector(".price").innerText.replace("$", "");
-            const itemImage = menuItem.querySelector("img").src;
-            
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const existingItem = cart.find(item => item.name === itemName);
-            
-            if (existingItem) {
-                existingItem.quantity++;
-            } else {
-                cart.push({ name: itemName, price: itemPrice, image: itemImage, quantity: 1 });
-            }
-            
-            localStorage.setItem("cart", JSON.stringify(cart));
-            alert(`${itemName} added to cart!`);
-            setTimeout(() => {
-                window.location.href = "cart.html";
-            }, 500);
-        });
-    });
-    
-    document.querySelector(".checkout-button").addEventListener("click", () => {
-        alert("Proceeding to checkout!");
-        localStorage.removeItem("cart");
-        window.location.href = "checkout.html";
-    });
-    
+    addDefaultItemsIfEmpty(); // Add default items if cart is empty
     if (document.querySelector(".cart-items")) {
-        updateCartDisplay();
+        updateCartDisplay(); // Update cart display with items
     }
 });
-
 
 </script>
 
