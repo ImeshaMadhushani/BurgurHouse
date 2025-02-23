@@ -23,11 +23,6 @@
    ```bash
    git clone https://github.com/ImeshaMadhushani/BurgurHouse.git
    ```
-2. Navigate to the project folder:
-   ```bash
-   cd burger-house-landing-page
-   ```
-3. Open `index.html` in your browser.
 
 ## 📌 Screenshots
 ![screencapture-real-state-two-phi-vercel-app-2025-02-23-17_55_33]
