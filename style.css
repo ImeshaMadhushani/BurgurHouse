@@ -961,7 +961,7 @@ footer a:hover {
 
 .specials-item h4 {
     font-size: 1.5rem;
-    color: #000000;
+    color: #222;
     margin-bottom: 10px;
 }
 
@@ -970,6 +970,14 @@ footer a:hover {
     color: #555;
     margin-bottom: 15px;
 }
+
+.specials-item .price2 {
+    font-size: 1.2rem;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+
 
 .addcart {
     background: #f6f60d;
