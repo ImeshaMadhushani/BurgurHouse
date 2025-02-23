@@ -500,7 +500,6 @@ document.querySelectorAll(".topnav ul li a").forEach(link => {
             }
             
             localStorage.setItem("cart", JSON.stringify(cart));
-            alert(`${itemName} added to cart!`);
             setTimeout(() => {
                 window.location.href = "cart.html";
             }, 500);
