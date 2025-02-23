@@ -1,4 +1,4 @@
-![screencapture-real-state-two-phi-vercel-app-2025-02-23-17_55_33](https://github.com/user-attachments/assets/eea16b68-5e18-4c4c-b1ba-720e4d9404c4)# 🍔 Burger House Landing Page
+# 🍔 Burger House Landing Page
 
 *A modern and stylish landing page for a burger shop, built using HTML, CSS, and JavaScript.*
 
@@ -30,7 +30,6 @@
 3. Open `index.html` in your browser.
 
 ## 📌 Screenshots
-![screencapture-real-state-two-phi-vercel-app-2025-02-23-17_55_33](https://github.com/user-attachments/assets/1a4deea8-54f7-4e6c-983a-58c0dfead44e)
-
+![screencapture-real-state-two-phi-vercel-app-2025-02-23-17_55_33]
 ---
 **⭐ Don't forget to star the repo if you like it!**
