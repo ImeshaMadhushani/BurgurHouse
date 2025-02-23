@@ -258,13 +258,19 @@ document.querySelectorAll(".topnav ul li a").forEach(link => {
             updateCartDisplay();
 
             // Checkout button functionality
-            const checkoutButton = document.querySelector('.checkout-button');
-            checkoutButton.addEventListener('click', function() {
-                alert('Thank you for your purchase!');
-                // Clear the cart after checkout
-                localStorage.removeItem("cart");
-                updateCartDisplay();
-            });
+     const checkoutButton = document.querySelector('.checkout-button');
+checkoutButton.addEventListener('click', function() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+        alert("Your cart is empty. Please add items to proceed.");
+    } else {
+        alert('Thank you for your purchase!');
+        // Clear the cart after checkout
+        localStorage.removeItem("cart");
+        updateCartDisplay();
+    }
+});
         });
     </script>
 </body>
