@@ -105,6 +105,100 @@
         display: block;
     }
 }
+
+
+/* Responsive Styles for Hamburger Menu */
+@media screen and (max-width: 768px) {
+    .topnav ul {
+        display: none; /* Hide the main menu on smaller screens */
+        flex-direction: column;
+        width: 100%;
+        position: relative; 
+    }
+
+    .topnav ul li {
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .icon {
+        display: block; /* Show the hamburger icon */
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    /* When the hamburger menu is active, show the links */
+    .topnav.responsive ul {
+        display: flex;
+    }
+
+    /* Initially hide the close icon */
+    #closeIcon {
+        display: none;
+        position: absolute;
+        top: 10px; /* Adjust as needed */
+        right: 10px; /* Adjust as needed */
+        font-weight: 300;
+        cursor: pointer;
+    }
+
+    /* Show close icon and hide hamburger icon when menu is open */
+    .topnav.responsive #hamburgerIcon {
+        display: none;
+    }
+
+    .topnav.responsive #closeIcon {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .topnav ul {
+        display: none; /* Hide the main menu on smaller screens */
+        flex-direction: column;
+        width: 100%;
+        position: relative; 
+    }
+
+    .topnav ul li {
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .icon {
+        display: block; /* Show the hamburger icon */
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    /* When the hamburger menu is active, show the links */
+    .topnav.responsive ul {
+        display: flex;
+    }
+
+    /* Initially hide the close icon */
+    #closeIcon {
+        display: none;
+        position: absolute;
+        top: 10px; /* Adjust as needed */
+        right: 10px; /* Adjust as needed */
+        font-weight: 300;
+        cursor: pointer;
+    }
+
+    /* Show close icon and hide hamburger icon when menu is open */
+    .topnav.responsive #hamburgerIcon {
+        display: none;
+    }
+
+    .topnav.responsive #closeIcon {
+        display: block;
+    }
+}
 </style>
 
 </head>
@@ -118,10 +212,10 @@
             <nav class="topnav">
                 <div id="myLinks">
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#menu">Menu</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#specials">Specials</a></li>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#menu">Menu</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="index.html#specials">Specials</a></li>
                     <li><a href="cart.html">Cart</a></li>
                 </ul>
                 </div>
