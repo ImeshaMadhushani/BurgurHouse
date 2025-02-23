@@ -4,189 +4,268 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Burger House - Cart</title>
-
     <link rel="stylesheet" href="style.css">
-    
-        <!-- favicon -->
-    <link rel="icon" href="./logo.jpg" type="image/jpg ">
+    <link rel="icon" href="./img/logo.jpg" type="image/jpg">
+
+     <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <style>
+ /* General Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
 
-    </style>
+.logo img {
+    height: 50px;
+}
 
+.logo h1 {
+    color: white;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Main Navigation Styles */
+.topnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.topnav ul li {
+    margin-right: 20px;
+}
+
+.topnav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Hamburger Icon Styles */
+.icon {
+    display: none; /* Hidden by default */
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;  /* Decrease icon weight */
+}
+
+.icon i {
+    font-size: 14px;
+}
+
+/* Responsive Styles for Hamburger Menu */
+@media screen and (max-width: 768px) {
+    .topnav ul {
+        display: none; /* Hide the main menu on smaller screens */
+        flex-direction: column;
+        width: 100%;
+        position: relative; 
+    }
+
+    .topnav ul li {
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .icon {
+        display: block; /* Show the hamburger icon */
+    }
+
+    /* When the hamburger menu is active, show the links */
+    .topnav.responsive ul {
+        display: flex;
+    }
+
+    /* Initially hide the close icon */
+    #closeIcon {
+        display: none;
+        position: absolute;
+        top: 10px; /* Adjust as needed */
+        right: 10px; /* Adjust as needed */
+        font-weight: 300;
+    }
+
+    /* Show close icon and hide hamburger icon when menu is open */
+    .topnav.responsive #hamburgerIcon {
+        display: none;
+    }
+
+    .topnav.responsive #closeIcon {
+        display: block;
+    }
+}
+</style>
 
 </head>
-
 <body>
-
     <!-- Navigation Bar -->
-    <div class="header" id="header">
+        <div class="header" id="header">
             <div class="logo">
-                <img src="./logo.jpg" alt="Burger House Logo">
+                <img src="./img/logo.jpg" alt="Burger House Logo">
                 <h1>Burger House</h1>
             </div>
-        <nav>
-            <ul>
-                <li><a href="index.html#home">Home</a></li>
-                 <li><a href="index.html#menu">Menu</a></li>
-                 <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="index.html#specials">Specials</a></li>
-               
-                
-                <li><a href="#">Cart</a></li>
-            </ul>
-        </nav>
-    </div>
-
- <div class="cart-container">
-    <h1>Cart</h1>
-    <div class="cart-items">
-        <div class="cart-item">
-            <img src="./1.jpg" alt="Burger 1">
-            <div class="cart-item-details">
-                <h2>Burger 1</h2>
-                <p>Price: $5.99</p>
-                <div class="quantity-control">
-                    <button class="decrement-button">-</button>
-                    <span class="quantity">1</span>
-                    <button class="increment-button">+</button>
+            <nav class="topnav">
+                <div id="myLinks">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#specials">Specials</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
                 </div>
-                <button class="remove-button">Remove</button>
-            </div>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars" id="hamburgerIcon"></i>
+                     <!-- Close Button -->
+                   <i class="fa fa-times" id="closeIcon" style="display: none;"></i>
+                </a>
+            </nav>
         </div>
-        <div class="cart-item">
-            <img src="./1.jpg" alt="Burger 2">
-            <div class="cart-item-details">
-                <h2>Burger 2</h2>
-                <p>Price: $6.99</p>
-                <div class="quantity-control">
-                    <button class="decrement-button">-</button>
-                    <span class="quantity">1</span>
-                    <button class="increment-button">+</button>
-                </div>
-                <button class="remove-button">Remove</button>
-            </div>
+    <!-- Cart Content -->
+    <div class="cart-container">
+        <h1>Cart</h1>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically inserted here -->
         </div>
-        <div class="cart-item">
-            <img src="./1.jpg" alt="Burger 3">
-            <div class="cart-item-details">
-                <h2>Burger 3</h2>
-                <p>Price: $7.99</p>
-                <div class="quantity-control">
-                    <button class="decrement-button">-</button>
-                    <span class="quantity">1</span>
-                    <button class="increment-button">+</button>
-                </div>
-                <button class="remove-button">Remove</button>
-            </div>
+        <div class="cart-total">
+            <h2>Total: $0.00</h2>
+            <button class="checkout-button">Checkout</button>
         </div>
     </div>
 
-    <div class="cart-total">
-        <h2>Total: $20.97</h2>
-        <button class="checkout-button">Checkout</button>
-    </div>
-</div>
-
-
-<footer>
-        &copy; 2023 Burger House. All rights reserved. | 
-        <a href="#privacy">Privacy Policy</a> | 
+    <!-- Footer -->
+    <footer>
+        &copy; 2023 Burger House. All rights reserved. |
+        <a href="#privacy">Privacy Policy</a> |
         <a href="#terms">Terms of Service</a>
-</footer>
-    
+    </footer>
 
-<script>
- document.addEventListener("DOMContentLoaded", () => {
-    function addDefaultItemsIfEmpty() {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    <script>
+        function myFunction() {
+    var x = document.querySelector(".topnav");
+    var hamburgerIcon = document.getElementById("hamburgerIcon");
+    var closeIcon = document.getElementById("closeIcon");
 
-        if (cart.length === 0) {
-            // Add default items if the cart is empty
-            const defaultItems = [
-                { name: "Burger 1", price: "5.99", image: "./1.jpg", quantity: 1 },
-                { name: "Burger 2", price: "6.99", image: "./1.jpg", quantity: 1 },
-                { name: "Burger 3", price: "7.99", image: "./1.jpg", quantity: 1 }
-            ];
-            localStorage.setItem("cart", JSON.stringify(defaultItems));
-        }
+    if (x.classList.contains("responsive")) {
+        // If the menu is already open, close it
+        x.classList.remove("responsive");
+        hamburgerIcon.style.display = "block"; // Show hamburger icon
+        closeIcon.style.display = "none";      // Hide close icon
+    } else {
+        // If the menu is closed, open it
+        x.classList.add("responsive");
+        hamburgerIcon.style.display = "none";  // Hide hamburger icon
+        closeIcon.style.display = "block";     // Show close icon
     }
+}
 
-    function updateCartDisplay() {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const cartContainer = document.querySelector(".cart-items");
-        const totalContainer = document.querySelector(".cart-total h2");
-        
-        if (cartContainer) {
-            if (cart.length === 0) {
-                cartContainer.innerHTML = "<p>Your cart is empty.</p>";
-                totalContainer.textContent = "Total: $0.00";
-            } else {
-                cartContainer.innerHTML = cart.map((item, index) => `
-                    <div class="cart-item">
-                        <img src="${item.image}" alt="${item.name}">
-                        <div class="cart-item-details">
-                            <h2>${item.name}</h2>
-                            <p>Price: $${parseFloat(item.price).toFixed(2)}</p>
-                            <div class="quantity-control">
-                                <button class="decrement-button" data-index="${index}">-</button>
-                                <span class="quantity">${item.quantity}</span>
-                                <button class="increment-button" data-index="${index}">+</button>
-                            </div>
-                            <button class="remove-button" data-index="${index}">Remove</button>
-                        </div>
-                    </div>
-                `).join("");
-                updateTotal();
-            }
-            
-            document.querySelectorAll(".remove-button").forEach(button => {
-                button.addEventListener("click", (event) => {
-                    const index = event.target.getAttribute("data-index");
-                    cart.splice(index, 1);
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    updateCartDisplay();
-                });
-            });
-            
-            document.querySelectorAll(".increment-button").forEach(button => {
-                button.addEventListener("click", (event) => {
-                    const index = event.target.getAttribute("data-index");
-                    cart[index].quantity++;
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    updateCartDisplay();
-                });
-            });
-            
-            document.querySelectorAll(".decrement-button").forEach(button => {
-                button.addEventListener("click", (event) => {
-                    const index = event.target.getAttribute("data-index");
-                    if (cart[index].quantity > 1) {
-                        cart[index].quantity--;
-                    } else {
-                        cart.splice(index, 1);
-                    }
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    updateCartDisplay();
-                });
-            });
-        }
-    }
+// Add event listeners to all menu links to close the menu when a link is clicked
+document.querySelectorAll(".topnav ul li a").forEach(link => {
+    link.addEventListener("click", () => {
+        var x = document.querySelector(".topnav");
+        var hamburgerIcon = document.getElementById("hamburgerIcon");
+        var closeIcon = document.getElementById("closeIcon");
 
-    function updateTotal() {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        let total = cart.reduce((acc, item) => acc + (parseFloat(item.price) * item.quantity), 0);
-        document.querySelector(".cart-total h2").textContent = `Total: $${total.toFixed(2)}`;
-    }
-
-    addDefaultItemsIfEmpty(); // Add default items if cart is empty
-    if (document.querySelector(".cart-items")) {
-        updateCartDisplay(); // Update cart display with items
-    }
+        x.classList.remove("responsive");
+        hamburgerIcon.style.display = "block";
+        closeIcon.style.display = "none";
+    });
 });
 
-</script>
 
+
+        document.addEventListener("DOMContentLoaded", () => {
+            function updateCartDisplay() {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const cartContainer = document.querySelector(".cart-items");
+                const totalContainer = document.querySelector(".cart-total h2");
+                
+                if (cartContainer) {
+                    if (cart.length === 0) {
+                        cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+                        totalContainer.textContent = "Total: $0.00";
+                    } else {
+                        cartContainer.innerHTML = cart.map((item, index) => `
+                            <div class="cart-item">
+                                <img src="${item.image}" alt="${item.name}">
+                                <div class="cart-item-details">
+                                    <h2>${item.name}</h2>
+                                    <p>Price: $${parseFloat(item.price).toFixed(2)}</p>
+                                    <div class="quantity-control">
+                                        <button class="decrement-button" data-index="${index}">-</button>
+                                        <span class="quantity">${item.quantity}</span>
+                                        <button class="increment-button" data-index="${index}">+</button>
+                                    </div>
+                                    <button class="remove-button" data-index="${index}">Remove</button>
+                                </div>
+                            </div>
+                        `).join("");
+                        updateTotal();
+                    }
+
+                    // Add event listeners for buttons
+                    document.querySelectorAll(".remove-button").forEach(button => {
+                        button.addEventListener("click", (event) => {
+                            const index = event.target.getAttribute("data-index");
+                            cart.splice(index, 1);
+                            localStorage.setItem("cart", JSON.stringify(cart));
+                            updateCartDisplay();
+                        });
+                    });
+
+                    document.querySelectorAll(".increment-button").forEach(button => {
+                        button.addEventListener("click", (event) => {
+                            const index = event.target.getAttribute("data-index");
+                            cart[index].quantity++;
+                            localStorage.setItem("cart", JSON.stringify(cart));
+                            updateCartDisplay();
+                        });
+                    });
+
+                    document.querySelectorAll(".decrement-button").forEach(button => {
+                        button.addEventListener("click", (event) => {
+                            const index = event.target.getAttribute("data-index");
+                            if (cart[index].quantity > 1) {
+                                cart[index].quantity--;
+                            } else {
+                                cart.splice(index, 1);
+                            }
+                            localStorage.setItem("cart", JSON.stringify(cart));
+                            updateCartDisplay();
+                        });
+                    });
+                }
+            }
+
+            function updateTotal() {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                let total = cart.reduce((acc, item) => acc + (parseFloat(item.price) * item.quantity), 0);
+                document.querySelector(".cart-total h2").textContent = `Total: $${total.toFixed(2)}`;
+            }
+
+            // Update cart display on page load
+            updateCartDisplay();
+
+            // Checkout button functionality
+            const checkoutButton = document.querySelector('.checkout-button');
+            checkoutButton.addEventListener('click', function() {
+                alert('Thank you for your purchase!');
+                // Clear the cart after checkout
+                localStorage.removeItem("cart");
+                updateCartDisplay();
+            });
+        });
+    </script>
 </body>
 </html>

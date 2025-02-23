@@ -7,7 +7,108 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- favicon -->
-    <link rel="icon" href="./logo.jpg" type="image/jpg ">
+    <link rel="icon" href="./img/logo.jpg" type="image/jpg ">
+
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<style>
+ /* General Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.logo h1 {
+    color: white;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Main Navigation Styles */
+.topnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.topnav ul li {
+    margin-right: 20px;
+}
+
+.topnav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Hamburger Icon Styles */
+.icon {
+    display: none; /* Hidden by default */
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;  /* Decrease icon weight */
+}
+
+.icon i {
+    font-size: 14px;
+}
+
+/* Responsive Styles for Hamburger Menu */
+@media screen and (max-width: 768px) {
+    .topnav ul {
+        display: none; /* Hide the main menu on smaller screens */
+        flex-direction: column;
+        width: 100%;
+        position: relative; 
+    }
+
+    .topnav ul li {
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .icon {
+        display: block; /* Show the hamburger icon */
+    }
+
+    /* When the hamburger menu is active, show the links */
+    .topnav.responsive ul {
+        display: flex;
+    }
+
+    /* Initially hide the close icon */
+    #closeIcon {
+        display: none;
+        position: absolute;
+        top: 10px; /* Adjust as needed */
+        right: 10px; /* Adjust as needed */
+        font-weight: 300;
+    }
+
+    /* Show close icon and hide hamburger icon when menu is open */
+    .topnav.responsive #hamburgerIcon {
+        display: none;
+    }
+
+    .topnav.responsive #closeIcon {
+        display: block;
+    }
+}
+</style>
+
 
 </head>
 <body>
@@ -15,10 +116,11 @@
         
         <div class="header" id="header">
             <div class="logo">
-                <img src="./logo.jpg" alt="Burger House Logo">
+                <img src="./img/logo.jpg" alt="Burger House Logo">
                 <h1>Burger House</h1>
             </div>
-            <nav>
+            <nav class="topnav">
+                <div id="myLinks">
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#menu">Menu</a></li>
@@ -26,11 +128,17 @@
                     <li><a href="#specials">Specials</a></li>
                     <li><a href="cart.html">Cart</a></li>
                 </ul>
+                </div>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars" id="hamburgerIcon"></i>
+                     <!-- Close Button -->
+                   <i class="fa fa-times" id="closeIcon" style="display: none;"></i>
+                </a>
             </nav>
         </div>
 
         <div class="home" id="home">
-            <img src="./1.jpg" alt="">
+            <img src="./img/1.jpg" alt="">
             <h2>Welcome to Burger House</h2>
             <h4>Satisfy Your Cravings with the Juiciest Burgers in Town!</h4>
             <p>We craft mouthwatering burgers using fresh, high-quality ingredients, 
@@ -46,21 +154,24 @@
             <p>Check out our limited-time offers and exclusive deals!</p>
             <div class="specials-grid">
                 <div class="specials-item">
-                    <img src="./1.jpg" alt="Special Burger">
+                    <img src="./img/1.jpg" alt="Special Burger">
                     <h4>Special Burger Combo</h4>
                     <p>Get a classic burger, fries, and a drink for only $12.99!</p>
+                    <div class="price2">$12.99</div>
                     <button class="addcart">Add to cart</button>
                 </div>
                 <div class="specials-item">
-                    <img src="./1.jpg" alt="Special Burger">
+                    <img src="./img/1.jpg" alt="Special Burger">
                     <h4>Family Meal Deal</h4>
                     <p>Enjoy 4 burgers, 4 fries, and 4 drinks for just $39.99!</p>
+                    <div class="price2">$39.99</div>
                     <button class="addcart">Add to cart</button>
                 </div>
                 <div class="specials-item">
-                    <img src="./1.jpg" alt="Special Burger">
+                    <img src="./img/1.jpg" alt="Special Burger">
                     <h4>Happy Hour Special</h4>
-                    <p>Buy one burger, get one free every Monday from 4-6pm!</p>
+                    <p>Buy one Spicy Jalapeno Burger , get one free every Monday from 4-6pm!</p>
+                    <div class="price2">$13.99</div>
                     <button class="addcart">Add to cart</button>
                 </div>
         </section>
@@ -100,7 +211,7 @@
              <div class="classics">
                 <h2>Classics</h2>
                 <div class="menu-item">
-                    <img src="./1.jpg" alt="Beef Burger">
+                    <img src="./img/1.jpg" alt="Beef Burger">
                     <h4>Beef Burger</h4>
                     <p>Classic burger made with 100% pure beef, fresh vegetables, and special seasonings.</p>
                     <div class="price">$9.99</div>
@@ -108,7 +219,7 @@
                     <button class="addcart">Add to cart</button>
                 </div>
                 <div class="menu-item">
-                    <img src="./1.jpg" alt="Chicken Burger">
+                    <img src="./img/1.jpg" alt="Chicken Burger">
                     <h4>Chicken Burger</h4>
                     <p>Juicy chicken patty with fresh lettuce, tomatoes, and a tangy sauce.</p>
                     <div class="price">$8.99</div>
@@ -116,7 +227,7 @@
                     <button class="addcart">Add to cart</button>
                 </div>
                 <div class="menu-item">
-                    <img src="./1.jpg" alt="Veggie Burger">
+                    <img src="./img/1.jpg" alt="Veggie Burger">
                     <h4>Veggie Burger</h4>
                     <p>Delicious plant-based patty with fresh veggies and a creamy spread.</p>
                     <div class="price">$7.99</div>
@@ -129,7 +240,7 @@
             <div class="specialty">
                 <h2>Specials</h2>
                 <div class="menu-item">
-                    <img src="./1.jpg" alt="BBQ Bacon Burger">
+                    <img src="./img/1.jpg" alt="BBQ Bacon Burger">
                     <h4>BBQ Bacon Burger</h4>
                     <p>Gourmet burger with BBQ sauce, crispy bacon, and melted cheese.</p>
                     <div class="price">$12.99</div>
@@ -137,7 +248,7 @@
                     <button class="addcart">Add to cart</button>
                 </div>
                 <div class="menu-item">
-                    <img src="./1.jpg" alt="Spicy Jalapeno Burger">
+                    <img src="./img/1.jpg" alt="Spicy Jalapeno Burger">
                     <h4>Spicy Jalapeno Burger</h4>
                     <p>Spicy burger topped with jalapenos, pepper jack cheese, and chipotle mayo.</p>
                     <div class="price">$11.99</div>
@@ -145,7 +256,7 @@
                     <button class="addcart">Add to cart</button>
                 </div>
                 <div class="menu-item">
-                    <img src="./1.jpg" alt="Mushroom Swiss Burger">
+                    <img src="./img/1.jpg" alt="Mushroom Swiss Burger">
                     <h4>Mushroom Swiss Burger</h4>
                     <p>Premium burger with sautéed mushrooms, Swiss cheese, and garlic aioli.</p>
                     <div class="price">$13.99</div>
@@ -158,7 +269,7 @@
             <div class="sides">
                 <h2>Side Dishes</h2>
                 <div class="menu-item">
-                    <img src="./2.jpg" alt="Fries">
+                    <img src="./img/2.jpg" alt="Fries">
                     <h4>Fries</h4>
                     <p>Crispy golden fries seasoned with sea salt.</p>
                     <div class="price">$3.99</div>
@@ -166,7 +277,7 @@
                     <button class="addcart">Add to cart</button>
                 </div>
                 <div class="menu-item">
-                    <img src="./9.png" alt="Onion Rings">
+                    <img src="./img/9.png" alt="Onion Rings">
                     <h4>Onion Rings</h4>
                     <p>Crispy onion rings served with a side of dipping sauce.</p>
                     <div class="price">$4.99</div>
@@ -174,7 +285,7 @@
                     <button class="addcart">Add to cart</button>
                 </div>
                 <div class="menu-item">
-                    <img src="./10.png" alt="Garden Salad">
+                    <img src="./img/10.png" alt="Garden Salad">
                     <h4>Garden Salad</h4>
                     <p>Fresh greens, cherry tomatoes, cucumbers, and croutons.</p>
                     <div class="price">$5.99</div>
@@ -187,7 +298,7 @@
              <div class="drinks">
                 <h2>Drinks</h2>
                     <div class="menu-item">
-                        <img src="./11.png" alt="Soda">
+                        <img src="./img/11.png" alt="Soda">
                         <h4>Sprite</h4>
                         <p>Refreshing Sprite available in multiple flavors.</p>
                         <div class="price">$1.99</div>
@@ -195,7 +306,7 @@
                         <button class="addcart">Add to cart</button>
                     </div>
                     <div class="menu-item">
-                        <img src="./14.png" alt="Iced Tea">
+                        <img src="./img/14.png" alt="Iced Tea">
                         <h4>Iced Tea</h4>
                         <p>Cool and refreshing iced tea with a hint of lemon.</p>
                         <div class="price">$2.49</div>
@@ -203,7 +314,7 @@
                         <button class="addcart">Add to cart</button>
                     </div>
                     <div class="menu-item">
-                        <img src="./13.png" alt="Milkshake">
+                        <img src="./img/13.png" alt="Milkshake">
                         <h4>Milkshake</h4>
                         <p>Creamy milkshake available in chocolate, vanilla, and strawberry.</p>
                         <div class="price">$4.99</div>
@@ -220,19 +331,19 @@
         <p>See what our customers have to say about their Burger House experience!</p>
         <div class="reviews-grid">
             <div class="review">
-                <img src="./15.png" alt="Customer 1">
+                <img src="./img/15.png" alt="Customer 1">
                 <h4>John Doe</h4>
                 <p>"The best burgers in town! I love the classic beef burger with fries."</p>
                 <div class="stars">★★★★★</div>
             </div>
             <div class="review">
-                <img src="./15.png" alt="Customer 2">
+                <img src="./img/15.png" alt="Customer 2">
                 <h4>Jane Smith</h4>
                 <p>"The veggie burger is amazing! I'm so glad they have a plant-based option."</p>
                 <div class="stars">★★★★★</div>
             </div>
             <div class="review">
-                <img src="./15.png" alt="Customer 3">
+                <img src="./img/15.png" alt="Customer 3">
                 <h4>Sam Wilson</h4>
                 <p>"The BBQ bacon burger is to die for! I can't get enough of it."</p>
                 <div class="stars">★★★★★</div>
@@ -262,13 +373,71 @@
 
  <script>
 
+function myFunction() {
+    var x = document.querySelector(".topnav");
+    var hamburgerIcon = document.getElementById("hamburgerIcon");
+    var closeIcon = document.getElementById("closeIcon");
+
+    if (x.classList.contains("responsive")) {
+        // If the menu is already open, close it
+        x.classList.remove("responsive");
+        hamburgerIcon.style.display = "block"; // Show hamburger icon
+        closeIcon.style.display = "none";      // Hide close icon
+    } else {
+        // If the menu is closed, open it
+        x.classList.add("responsive");
+        hamburgerIcon.style.display = "none";  // Hide hamburger icon
+        closeIcon.style.display = "block";     // Show close icon
+    }
+}
+
+// Add event listeners to all menu links to close the menu when a link is clicked
+document.querySelectorAll(".topnav ul li a").forEach(link => {
+    link.addEventListener("click", () => {
+        var x = document.querySelector(".topnav");
+        var hamburgerIcon = document.getElementById("hamburgerIcon");
+        var closeIcon = document.getElementById("closeIcon");
+
+        x.classList.remove("responsive");
+        hamburgerIcon.style.display = "block";
+        closeIcon.style.display = "none";
+    });
+});
+
  document.querySelectorAll(".addcart").forEach(button => {
         button.addEventListener("click", (event) => {
             const menuItem = event.target.closest(".menu-item");
             const itemName = menuItem.querySelector("h4").innerText;
             const itemPrice = parseFloat(menuItem.querySelector(".price").innerText.replace("$", ""));
             const itemImage = menuItem.querySelector("img").src;
+
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const existingItem = cart.find(item => item.name === itemName);
             
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name: itemName, price: itemPrice, image: itemImage, quantity: 1 });
+            }
+            
+            localStorage.setItem("cart", JSON.stringify(cart));
+            /* alert(`${itemName} added to cart!`); */
+            setTimeout(() => {
+                window.location.href = "cart.html";
+            }, 500);
+        });
+    });
+
+
+ document.querySelectorAll(".addcart").forEach(button => {
+        button.addEventListener("click", (event) => {
+            
+            const specialItem = event.target.closest(".specials-item");
+            const itemName = specialItem.querySelector("h4").innerText;
+            const itemPrice = parseFloat(specialItem.querySelector(".price2").innerText.replace("$", ""));
+            const itemImage = specialItem.querySelector("img").src;
+            
+
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
             const existingItem = cart.find(item => item.name === itemName);
             
@@ -285,6 +454,8 @@
             }, 500);
         });
     });
+
+
     
     if (document.querySelector(".cart-items")) {
         updateCartDisplay();
