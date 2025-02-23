@@ -24,7 +24,8 @@
    git clone https://github.com/ImeshaMadhushani/BurgurHouse.git
    ```
 
-## 📌 Screenshots
-![screencapture-real-state-two-phi-vercel-app-2025-02-23-17_55_33]
+## 📸 Screenshots
+![screencapture-burgur-house-olive-vercel-app-2025-02-23-18_03_42](https://github.com/user-attachments/assets/140e7b52-6183-4d0e-b809-e4b578f6484e)
+
 ---
 **⭐ Don't forget to star the repo if you like it!**
